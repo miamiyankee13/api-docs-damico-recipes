@@ -1,13 +1,13 @@
 ---
-title: FF Convos API Reference
+title: D'Amico Recipe API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 
 toc_footers:
-  - <a href='https://github.com/miamiyankee13/ff-convos-api'>View FF Convos API on GitHub</a>
-  - <a href='https://github.com/miamiyankee13/ff-convos-client'>View FF Convos Client on GitHub</a>
+  - <a href='https://github.com/miamiyankee13/damico-recipes-api'>View D'Amico Recipes API on GitHub</a>
+  - <a href='https://github.com/miamiyankee13/damico-recipes-client'>View D'Amico Recipes Client on GitHub</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,233 +18,364 @@ search: true
 
 # Introduction
 
-Welcome to the FF Convos API! You can use our API to access FF Convos API endpoints, which can interact with our database of players & users, as well as the FF Convos client application.
+Welcome to the D'Amico Reecipes API! You can use our API to access D'Amico Recipes API endpoints, which can interact with our database of recipes, as well as the D'Amico Recipes client application.
 
-# Registration
-> To register with FF Convos, use this code:
+# Recipes
 
-```shell
-curl -X POST
-  https://ff-convos-api.herokuapp.com/api/users
-  -H 'Content-Type: application/json'
-  -d '{
-	"username": "<your username>",
-	"password": "<your password>",
-	"firstName": "<your first name>",
-	"lastName": "<your last name>"
-}'
-```
+## Get All Recipes
 
-> The above command returns a 201 status code and a JSON object containing the user information like this:
-
-```json
-{
-    "_id": "5c2a84e2ddca060017e13899",
-    "username": "testuser",
-    "firstName": "test",
-    "lastName": "tester",
-    "players": []
-}
-```
-FF Convos uses JSON Web Token (JWT) to conrol access to the API. To obtain a token, you must have an account. To create an account, you can either register from the <a href='https://ff-convos-client.herokuapp.com'>client</a> or make a POST request to the `/api/users` endpoint.
-
-### HTTP Request
-
-`POST https://ff-convos-api.herokuapp.com/api/users`
-
-### Required Fields
-Field | Description
------ | -----------
-username | desired username
-password | desired password
-firstName | your first name
-lastName | your last name
-
-# Authentication
-
-> To obtain a token, use this code:
-
-```shell
-curl -X POST 
-  https://ff-convos-api.herokuapp.com/api/auth/login
-  -H 'Content-Type: application/json'
-  -d '{
-	"username": "<your username>",
-	"password": "<your password>"
-}'
-```
-> The above command returns a 200 status code and a JSON object containing a token like this:
-
-```json
-{
-    "authToken": "<token>"
-}
-```
-
-Once you have an account, you must either login from the <a href='https://ff-convos-client.herokuapp.com'>client</a> or make a POST request to the `/api/auth/login` endpoint in order to obtain a token.
-
-### HTTP Request
-
-`https://ff-convos-api.herokuapp.com/api/auth/login`
-
-### Required Fields
-Field | Description
------ | -----------
-username | your username
-password | your password
-
-The returned token must be added in the header of any request to a protected endpoint via Bearer Authentication. The header should look as follows:
-
-`Authorization: Bearer <token>`
-
-<aside class="notice">
-You must replace <code>&lt;token&gt;</code> with your token.
-</aside>
-
-
-# Players
-
-## Get All Players
-
-> To retrieve all players, use this code:
+> To retrieve all recipes, use this code:
 
 ```shell
 curl -X GET 
-  https://ff-convos-api.herokuapp.com/api/players
+  https://damico-recipes-api.herokuapp.com/api/recipes
 ```
 
-> The above command returns a 200 status code and a JSON object containing an array of all existing players like this:
+> The above command returns a 200 status code and a JSON object containing an array of all existing recipes like this:
 
 ```json
 {
-  "players": [
+  "recipes": [
     {
-      "_id": "5c61ad37be03e80f47283c1c",
-      "name": "Alvin Kamara",
-      "position": "RB",
-      "number": "41",
-      "team": "Saints",
-      "comments": []
+      "_id": "5cb0fca6801931051237cdf0",
+      "name": "Baked Chicken Cutlets",
+      "ingredients": [
+          "Chicken Breast",
+          "Egg (1)",
+          "Bread Crumbs",
+          "Grated Cheese"
+      ],
+      "instructions": [
+          "Cut chicken breast into thin cutlets",
+          "Sramble egg in bowl",
+          "Dip cutlets in bowl",
+          "Coat egg-dipped cutlets in bread crumbs",
+          "Bake in oven at 350 for 20 mins, flipping halfway through",
+          "Top with grated cheese & serve with side of choice"
+      ],
+      "sides": [
+          "Vegetable Pasta",
+          "Broccoli",
+          "Asparagus",
+          "Zucchini",
+          "Spinach"
+      ],
+      "meal": "dinner",
+      "type": "chicken"
     },
     {
-      "_id": "5c5db356f29f0045fe63fde9",
-      "name": "Odell Beckham Jr.",
-      "position": "WR",
-      "number": "13",
-      "team": "Giants",
-      "comments": []
-    }
+      "_id": "5ceac2cc9bac1c0017ac7386",
+      "name": "Banana Pancakes",
+      "ingredients": [
+          "Banana (1)",
+          "Egg (1)"
+      ],
+      "instructions": [
+          "Mash banana in bowl",
+          "Add egg",
+          "Scramble mixture",
+          "Pour into pan as 3 separate pancakes",
+          "Cook over medium flame until edges are golden brown",
+          "Serve with side of choice"
+      ],
+      "sides": [
+          "Peanut Butter",
+          "Turkey Bacon"
+      ],
+      "meal": "breakfast",
+      "type": "pancakes"
+    },
+    ...more recipes
   ]
 }
 ```
 
-This endpoint retrieves all existing players from the database.
-
-This endpoint is NOT protected, therefore does not require a token. 
+This endpoint retrieves all existing recipes from the database.
 
 ### HTTP Request
 
-`GET https://ff-convos-api.herokuapp.com/api/players`
+`GET https://damico-recipes-api.herokuapp.com/api/recipes`
 
 
-## Get an Individual Player
+## Get an Individual Recipe
 
-> To retrieve an individual player, use this code:
+> To retrieve an individual recipe, use this code:
 
 ```shell
 curl -X GET
-  https://ff-convos-api.herokuapp.com/api/players/<id>
+  https://damico-recipes-api.herokuapp.com/api/recipes<id>
 ```
 
-> The above command returns a 200 status code and a JSON object containing specific player information like this:
+> The above command returns a 200 status code and a JSON object containing specific recipe information like this:
 
 ```json
 {
-  "_id": "5c61ad37be03e80f47283c1c",
-  "name": "Alvin Kamara",
-  "position": "RB",
-  "number": "41",
-  "team": "Saints",
-  "comments": []
+  "_id": "5cb0fca6801931051237cdf0",
+  "name": "Baked Chicken Cutlets",
+  "ingredients": [
+      "Chicken Breast",
+      "Egg (1)",
+      "Bread Crumbs",
+      "Grated Cheese"
+  ],
+  "instructions": [
+      "Cut chicken breast into thin cutlets",
+      "Sramble egg in bowl",
+      "Dip cutlets in bowl",
+      "Coat egg-dipped cutlets in bread crumbs",
+      "Bake in oven at 350 for 20 mins, flipping halfway through",
+      "Top with grated cheese & serve with side of choice"
+  ],
+  "sides": [
+      "Vegetable Pasta",
+      "Broccoli",
+      "Asparagus",
+      "Zucchini",
+      "Spinach"
+  ],
+  "meal": "dinner",
+  "type": "chicken"
 }
 ```
 
-This endpoint retrieves an individual player from the database.
-
-This endpoint is NOT protected, therefore does not require a token. 
-
+This endpoint retrieves an individual recipe from the database.
 
 ### HTTP Request
 
-`GET https://ff-convos-api.herokuapp.com/api/players/<id>`
+`GET https://damico-recipes-api.herokuapp.com/api/recipes/<id>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | id of the player to retrieve
+id | id of the recipe to retrieve
 
-## Create a Player
 
-> To create a player, use this code:
+## Get Recipes by Meal
+
+> To retrieve recipes by meal, use this code:
 
 ```shell
-curl -X POST
-  https://ff-convos-api.herokuapp.com/api/players
-  -H 'Authorization: Bearer <token>'
-  -H 'Content-Type: application/json'
-  -d '{
-	"name": "New Player",
-	"position": "QB",
-	"number": "7",
-	"team": "Dolphins"
-}'
+curl -X GET 
+  https://damico-recipes-api.herokuapp.com/api/recipes/<meal>
 ```
 
-> The above command returns a 201 status code and a JSON object containing the player information like this:
+> The above command returns a 200 status code and a JSON object containing an array of all existing recipes matching the specified meal like this:
 
 ```json
 {
-    "_id": "5c2a3758d1490900174e9da8",
-    "name": "New Player",
-    "position": "QB",
-    "number": "7",
-    "team": "Dolphins",
-    "comments": []
+  "recipes": [
+    {
+      "_id": "5ceac2cc9bac1c0017ac7386",
+      "name": "Banana Pancakes",
+      "ingredients": [
+          "Banana (1)",
+          "Egg (1)"
+      ],
+      "instructions": [
+          "Mash banana in bowl",
+          "Add egg",
+          "Scramble mixture",
+          "Pour into pan as 3 separate pancakes",
+          "Cook over medium flame until edges are golden brown",
+          "Serve with side of choice"
+      ],
+      "sides": [
+          "Peanut Butter",
+          "Turkey Bacon"
+      ],
+      "meal": "breakfast",
+      "type": "pancakes"
+    },
+    ...more recipes with same meal property value
+  ]
 }
 ```
 
-This endpoint creates a new player, adding it to the database.
-
-This endpoint IS protected, therefore requires a token.
+This endpoint retrieves all existing recipes matching the specified meal from the database.
 
 ### HTTP Request
 
-`POST https://ff-convos-api.herokuapp.com/api/players`
+`GET https://damico-recipes-api.herokuapp.com/api/recipes/<meal>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+meal | meal of the recipes to retrieve
+
+## Get Recipes by Type
+
+> To retrieve recipes by type, use this code:
+
+```shell
+curl -X GET 
+  https://damico-recipes-api.herokuapp.com/api/recipes/<type>
+```
+
+> The above command returns a 200 status code and a JSON object containing an array of all existing recipes matching the specified type like this:
+
+```json
+{
+  "recipes": [
+    {
+      "_id": "5ceac2cc9bac1c0017ac7386",
+      "name": "Banana Pancakes",
+      "ingredients": [
+          "Banana (1)",
+          "Egg (1)"
+      ],
+      "instructions": [
+          "Mash banana in bowl",
+          "Add egg",
+          "Scramble mixture",
+          "Pour into pan as 3 separate pancakes",
+          "Cook over medium flame until edges are golden brown",
+          "Serve with side of choice"
+      ],
+      "sides": [
+          "Peanut Butter",
+          "Turkey Bacon"
+      ],
+      "meal": "breakfast",
+      "type": "pancakes"
+    },
+    ...more recipes with same type property value
+  ]
+}
+```
+
+This endpoint retrieves all existing recipes matching the specified type from the database.
+
+### HTTP Request
+
+`GET https://damico-recipes-api.herokuapp.com/api/recipes/<type>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+type | type of the recipes to retrieve
+
+
+## Create a Recipe
+
+> To create a recipe, use this code:
+
+```shell
+curl -X POST
+  https://damico-recipes-api.herokuapp.com/api/recipes
+  -H 'Content-Type: application/json'
+  -d '{
+	"name": "Baked Chicken Cutlets",
+    "ingredients": [
+        "Chicken Breast",
+        "Egg (1)",
+        "Bread Crumbs",
+        "Grated Cheese"
+    ],
+    "instructions": [
+        "Cut chicken breast into thin cutlets",
+        "Sramble egg in bowl",
+        "Dip cutlets in bowl",
+        "Coat egg-dipped cutlets in bread crumbs",
+        "Bake in oven at 350 for 20 mins, flipping halfway through",
+        "Top with grated cheese & serve with side of choice"
+    ],
+    "sides": [
+        "Vegetable Pasta",
+        "Broccoli",
+        "Asparagus",
+        "Zucchini",
+        "Spinach"
+    ],
+    "meal": "dinner",
+    "type": "chicken"
+}'
+```
+
+> The above command returns a 201 status code and a JSON object containing the recipe information like this:
+
+```json
+{
+    "_id": "5cb0fca6801931051237cdf0",
+    "name": "Baked Chicken Cutlets",
+    "ingredients": [
+        "Chicken Breast",
+        "Egg (1)",
+        "Bread Crumbs",
+        "Grated Cheese"
+    ],
+    "instructions": [
+        "Cut chicken breast into thin cutlets",
+        "Sramble egg in bowl",
+        "Dip cutlets in bowl",
+        "Coat egg-dipped cutlets in bread crumbs",
+        "Bake in oven at 350 for 20 mins, flipping halfway through",
+        "Top with grated cheese & serve with side of choice"
+    ],
+    "sides": [
+        "Vegetable Pasta",
+        "Broccoli",
+        "Asparagus",
+        "Zucchini",
+        "Spinach"
+    ],
+    "meal": "dinner",
+    "type": "chicken"
+}
+```
+
+This endpoint creates a new recipe, adding it to the database.
+
+### HTTP Request
+
+`POST https://damico-recipes-api.herokuapp.com/api/recipes`
 
 ### Required Fields
 Field | Description
 ----- | -----------
-name | player name
-position | player position
-number | player number
-team | current team of player
+name | recipe name
+ingredients | recipe ingredients
+instructions | recipe instructions
+sides | recipe sides
+meal | recipe meal
+type | recipe type
 
-## Edit a Player
+## Edit a Recipe
 
-> To edit a player, use this code:
+> To edit a recipe, use this code:
 
 ```shell
 curl -X PUT
-  https://ff-convos-api.herokuapp.com/api/players/<id>
-  -H 'Authorization: Bearer <token>'
+  https://damico-recipes-api.herokuapp.com/api/recipes/<id>
   -H 'Content-Type: application/json'
   -d '{
-	"_id": "5c2a3758d1490900174e9da8",
-	"name": "Old Player",
-	"position": "RB",
-	"number": "21",
-	"team": "Eagles"
+	"_id": "5cb0fca6801931051237cdf0",
+    "name": "Fried Chicken Cutlets",
+    "ingredients": [
+        "Chicken Breast",
+        "Egg (1)",
+        "Bread Crumbs",
+        "Grated Cheese"
+    ],
+    "instructions": [
+        "Cut chicken breast into thin cutlets",
+        "Sramble egg in bowl",
+        "Dip cutlets in bowl",
+        "Coat egg-dipped cutlets in bread crumbs",
+        "Cook in oil over medium flame",
+        "Top with grated cheese & serve with side of choice"
+    ],
+    "sides": [
+        "Vegetable Pasta",
+        "Broccoli",
+        "Asparagus",
+        "Zucchini",
+        "Spinach"
+    ],
+    "meal": "dinner",
+    "type": "chicken"
 }'
 ```
 
@@ -252,304 +383,81 @@ curl -X PUT
 
 ```json
 {
-    "_id": "5c2a3758d1490900174e9da8",
-    "name": "Old Player",
-    "position": "RB",
-    "number": "21",
-    "team": "Eagles",
-    "comments": []
+  "_id": "5cb0fca6801931051237cdf0",
+  "name": "Fried Chicken Cutlets",
+  "ingredients": [
+      "Chicken Breast",
+      "Egg (1)",
+      "Bread Crumbs",
+      "Grated Cheese"
+  ],
+  "instructions": [
+      "Cut chicken breast into thin cutlets",
+      "Sramble egg in bowl",
+      "Dip cutlets in bowl",
+      "Coat egg-dipped cutlets in bread crumbs",
+      "Cook in oil over medium flame",
+      "Top with grated cheese & serve with side of choice"
+  ],
+  "sides": [
+      "Vegetable Pasta",
+      "Broccoli",
+      "Asparagus",
+      "Zucchini",
+      "Spinach"
+  ],
+  "meal": "dinner",
+  "type": "chicken"
 }
 ```
 
-This endpoint edits an exisintg player in the database.
-
-This endpoint IS protected, therefore requires a token.
+This endpoint edits an exisintg recipe in the database.
 
 ### HTTP Request
 
-`PUT https://ff-convos-api.herokuapp.com/api/players/<id>`
+`PUT https://damico-recipes-api.herokuapp.com/api/recipes/<id>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | id of the player to edit
+id | id of the recipe to edit
 
 ### Required Fields
 Field | Description
 ----- | -----------
-_id | id of the player to edit
+_id | id of the recipe to edit
 
 ### Optional Fields
 Field | Description
 ----- | -----------
-name | player name
-position | player position
-number | player number
-team | current team of player
+name | recipe name
+ingredients | recipe ingredients
+instructions | recipe instructions
+sides | recipe sides
+meal | recipe meal
+type | recipe type
 
 
-## Delete a Player
+## Delete a Recipe
 
-> To delete a player, use this code:
+> To delete a recipe, use this code:
 
 ```shell
 curl -X DELETE
-  https://ff-convos-api.herokuapp.com/api/players/<id>
-  -H 'Authorization: Bearer <token>'
+  https://damico-recipes-api.herokuapp.com/api/recipes/<id>
 ```
 
 > The above command returns a 204 status code.
 
-This endpoint deletes an existing player from the database.
-
-This endpoint IS protected, therefore requires a token.
+This endpoint deletes an existing recipe from the database.
 
 ### HTTP Request
 
-`DELETE https://ff-convos-api.herokuapp.com/api/players/<id>`
+`DELETE https://damico-recipes-api.herokuapp.com/api/recipes/<id>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | id of the player to delete
-
-## Add Comment to Player
-
-> To add a comment to a player, use this code:
-
-```shell
-curl -X POST
-  https://ff-convos-api.herokuapp.com/api/players/<id>
-  -H 'Authorization: Bearer <token>'
-  -H 'Content-Type: application/json'
-  -d '{
-	"comment": {
-		"content": "This is a test comment",
-		"author": "testuser"
-	}
-}'
-```
-
-> The above command returns a 201 status code and a JSON object containing a message like this:
-
-```json
-{
-    "message": "Comment added to player"
-}
-```
-
-This endpoint adds a comment to an existing player in the database.
-
-This endpoint IS protected, therefore requires a token.
-
-### HTTP Request
-
-`POST https://ff-convos-api.herokuapp.com/api/players/<id>`
-
-### URL Parameters
-Parameter | Description
---------- | -----------
-id | id of the player you would like to add the comment to
-
-### Required Fields
-Field | Description
------ | -----------
-comment | object containing "content" and "author"
-- content | content of the comment
-- author | author of the comment
-
-
-## Remove Comment from Player
-
-> To remove a comment from a player, use this code:
-
-```shell
-curl -X DELETE 
-  https://ff-convos-api.herokuapp.com/api/players/<id>/<commentId>
-  -H 'Authorization: Bearer <token>' 
-```
-
-> The above command returns a 200 status code and a JSON object containing a message like this:
-
-```json
-{
-    "message": "Comment removed from player"
-}
-```
-
-This endpoint removes an existing comment from an existing player in the database.
-
-This endpoint IS protected, therefore requires a token.
-
-### HTTP Request
-
-`DELETE https://ff-convos-api.herokuapp.com/api/players/<id>/<commentId>`
-
-### URL Parameters
-Parameter | Description
---------- | -----------
-id | id of the player to remove the comment from
-commentId | id of the comment to remove
-
-# Users
-
-## Get All User Players
-
-> To retrieve all user players, use this code:
-
-```shell
-curl -X GET
-  https://ff-convos-api.herokuapp.com/api/users/players
-  -H 'Authorization: Bearer <token>'
- 
-```
-
-> The above command returns a 200 status code, as well as a JSON object containing an array of all existing user players and the user id like this:
-
-```json
-{
-    "players": [
-        {
-            "_id": "5c5db356f29f0045fe63fde4",
-            "name": "Drew Brees",
-            "position": "QB",
-            "number": "9",
-            "team": "Saints",
-            "comments": []
-        },
-        {
-            "_id": "5c5db356f29f0045fe63fde5",
-            "name": "Nick Chubb",
-            "position": "RB",
-            "number": "24",
-            "team": "Browns",
-            "comments": []
-        }
-    ],
-    "_id": "5c5ef7c10eadf4488389a0b4"
-}
-```
-
-This endpoint retrieves all existing user players.
-
-This endpoint IS protected, therefore requires a token. 
-
-### HTTP Request
-
-`GET https://ff-convos-api.herokuapp.com/api/users/players`
-
-## Get All User Players by Position
-
-> To retrieve all user players by position, use this code:
-
-```shell
-curl -X GET
-  https://ff-convos-api.herokuapp.com/api/users/players/<position>
-  -H 'Authorization: Bearer <token>'
- 
-```
-
-> The above command returns a 200 status code, as well as a JSON object containing an array of all existing user players by position and the user id like this:
-
-```json
-{
-    "players": [
-        {
-            "_id": "5c5db356f29f0045fe63fde4",
-            "name": "Drew Brees",
-            "position": "QB",
-            "number": "9",
-            "team": "Saints",
-            "comments": []
-        },
-        {
-            "_id": "5c5db356f29f0045fe63fde7",
-            "name": "Mitchell Trubisky",
-            "position": "QB",
-            "number": "10",
-            "team": "Bears",
-            "comments": []
-        }
-    ],
-    "_id": "5c5ef7c10eadf4488389a0b4"
-}
-```
-
-This endpoint retrieves all existing user players by position.
-
-This endpoint IS protected, therefore requires a token. 
-
-### HTTP Request
-
-`GET https://ff-convos-api.herokuapp.com/api/users/players/<position>`
-
-### URL Parameters
-Parameter | Description
---------- | -----------
-position | position to filter players by
-
-## Add Player to User
-
-> To add a player, use this code:
-
-```shell
-curl -X PUT 
-  https://ff-convos-api.herokuapp.com/api/users/players/<id>
-  -H 'Authorization: Bearer <token>'
-```
-
-> The above command returns a 200 status code and a JSON object containing a message like this:
-
-```json
-{
-    "message": "Player added to user"
-}
-```
-
-This endpoint adds an existing player to the user.
-
-This endpoint IS protected, therefore requires a token. 
-
-### HTTP Request
-
-`PUT https://ff-convos-api.herokuapp.com/api/users/players/<id>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-id | id of the player to add
-
-## Remove Player from User
-
-> To remove a player, use this code:
-
-```shell
-curl -X DELETE 
-  https://ff-convos-api.herokuapp.com/api/users/players/<id>
-  -H 'Authorization: Bearer <token>'
-```
-
-> The above command returns a 200 status code and a JSON object containing a message like this:
-
-```json
-{
-    "message": "Player removed from user"
-}
-```
-
-This endpoint removes an existing player from the user.
-
-This endpoint IS protected, therefore requires a token. 
-
-### HTTP Request
-
-`DELETE https://ff-convos-api.herokuapp.com/api/users/players/<id>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-id | id of the player to remove
+id | id of the recipe to delete
