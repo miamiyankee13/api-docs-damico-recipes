@@ -1,0 +1,774 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>D'Amico Recipe API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#recipes" class="toc-h1 toc-link" data-title="Recipes">Recipes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-recipes" class="toc-h2 toc-link" data-title="Get All Recipes">Get All Recipes</a>
+                  </li>
+                  <li>
+                    <a href="#get-an-individual-recipe" class="toc-h2 toc-link" data-title="Get an Individual Recipe">Get an Individual Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#get-recipes-by-meal" class="toc-h2 toc-link" data-title="Get Recipes by Meal">Get Recipes by Meal</a>
+                  </li>
+                  <li>
+                    <a href="#get-recipes-by-type" class="toc-h2 toc-link" data-title="Get Recipes by Type">Get Recipes by Type</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-recipe" class="toc-h2 toc-link" data-title="Create a Recipe">Create a Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#edit-a-recipe" class="toc-h2 toc-link" data-title="Edit a Recipe">Edit a Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-recipe" class="toc-h2 toc-link" data-title="Delete a Recipe">Delete a Recipe</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/miamiyankee13/damico-recipes-api'>View D'Amico Recipes API on GitHub</a></li>
+            <li><a href='https://github.com/miamiyankee13/damico-recipes-client'>View D'Amico Recipes Client on GitHub</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the D&#39;Amico Reecipes API! You can use our API to access D&#39;Amico Recipes API endpoints, which can interact with our database of recipes, as well as the D&#39;Amico Recipes client application.</p>
+<h1 id='recipes'>Recipes</h1><h2 id='get-all-recipes'>Get All Recipes</h2>
+<blockquote>
+<p>To retrieve all recipes, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET 
+  https://damico-recipes-api.herokuapp.com/api/recipes
+</code></pre>
+<blockquote>
+<p>The above command returns a 200 status code and a JSON object containing an array of all existing recipes like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cb0fca6801931051237cdf0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baked Chicken Cutlets"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Chicken Breast"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Egg (1)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Bread Crumbs"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Grated Cheese"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Cut chicken breast into thin cutlets"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Sramble egg in bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Dip cutlets in bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Coat egg-dipped cutlets in bread crumbs"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Bake in oven at 350 for 20 mins, flipping halfway through"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Top with grated cheese &amp; serve with side of choice"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Vegetable Pasta"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Broccoli"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Asparagus"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Zucchini"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Spinach"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinner"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chicken"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ceac2cc9bac1c0017ac7386"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banana Pancakes"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Banana (1)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Egg (1)"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Mash banana in bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Add egg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Scramble mixture"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Pour into pan as 3 separate pancakes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Cook over medium flame until edges are golden brown"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Serve with side of choice"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Peanut Butter"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Turkey Bacon"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"breakfast"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pancakes"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...more</span><span class="w"> </span><span class="err">recipes</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all existing recipes from the database.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://damico-recipes-api.herokuapp.com/api/recipes</code></p>
+<h2 id='get-an-individual-recipe'>Get an Individual Recipe</h2>
+<blockquote>
+<p>To retrieve an individual recipe, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET
+  https://damico-recipes-api.herokuapp.com/api/recipes&lt;id&gt;
+</code></pre>
+<blockquote>
+<p>The above command returns a 200 status code and a JSON object containing specific recipe information like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cb0fca6801931051237cdf0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baked Chicken Cutlets"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Chicken Breast"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Egg (1)"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Bread Crumbs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Grated Cheese"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Cut chicken breast into thin cutlets"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Sramble egg in bowl"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Dip cutlets in bowl"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Coat egg-dipped cutlets in bread crumbs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Bake in oven at 350 for 20 mins, flipping halfway through"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Top with grated cheese &amp; serve with side of choice"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Vegetable Pasta"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Broccoli"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Asparagus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Zucchini"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Spinach"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinner"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chicken"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an individual recipe from the database.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://damico-recipes-api.herokuapp.com/api/recipes/&lt;id&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>id of the recipe to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='get-recipes-by-meal'>Get Recipes by Meal</h2>
+<blockquote>
+<p>To retrieve recipes by meal, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET 
+  https://damico-recipes-api.herokuapp.com/api/recipes/&lt;meal&gt;
+</code></pre>
+<blockquote>
+<p>The above command returns a 200 status code and a JSON object containing an array of all existing recipes matching the specified meal like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ceac2cc9bac1c0017ac7386"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banana Pancakes"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Banana (1)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Egg (1)"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Mash banana in bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Add egg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Scramble mixture"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Pour into pan as 3 separate pancakes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Cook over medium flame until edges are golden brown"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Serve with side of choice"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Peanut Butter"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Turkey Bacon"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"breakfast"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pancakes"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...more</span><span class="w"> </span><span class="err">recipes</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">meal</span><span class="w"> </span><span class="err">property</span><span class="w"> </span><span class="err">value</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all existing recipes matching the specified meal from the database.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://damico-recipes-api.herokuapp.com/api/recipes/&lt;meal&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>meal</td>
+<td>meal of the recipes to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='get-recipes-by-type'>Get Recipes by Type</h2>
+<blockquote>
+<p>To retrieve recipes by type, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET 
+  https://damico-recipes-api.herokuapp.com/api/recipes/&lt;<span class="nb">type</span>&gt;
+</code></pre>
+<blockquote>
+<p>The above command returns a 200 status code and a JSON object containing an array of all existing recipes matching the specified type like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ceac2cc9bac1c0017ac7386"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banana Pancakes"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Banana (1)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Egg (1)"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Mash banana in bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Add egg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Scramble mixture"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Pour into pan as 3 separate pancakes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Cook over medium flame until edges are golden brown"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Serve with side of choice"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Peanut Butter"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Turkey Bacon"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"breakfast"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pancakes"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...more</span><span class="w"> </span><span class="err">recipes</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">property</span><span class="w"> </span><span class="err">value</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all existing recipes matching the specified type from the database.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://damico-recipes-api.herokuapp.com/api/recipes/&lt;type&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>type of the recipes to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-recipe'>Create a Recipe</h2>
+<blockquote>
+<p>To create a recipe, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST
+  https://damico-recipes-api.herokuapp.com/api/recipes
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -d <span class="s1">'{
+    "name": "Baked Chicken Cutlets",
+    "ingredients": [
+        "Chicken Breast",
+        "Egg (1)",
+        "Bread Crumbs",
+        "Grated Cheese"
+    ],
+    "instructions": [
+        "Cut chicken breast into thin cutlets",
+        "Sramble egg in bowl",
+        "Dip cutlets in bowl",
+        "Coat egg-dipped cutlets in bread crumbs",
+        "Bake in oven at 350 for 20 mins, flipping halfway through",
+        "Top with grated cheese &amp; serve with side of choice"
+    ],
+    "sides": [
+        "Vegetable Pasta",
+        "Broccoli",
+        "Asparagus",
+        "Zucchini",
+        "Spinach"
+    ],
+    "meal": "dinner",
+    "type": "chicken"
+}'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns a 201 status code and a JSON object containing the recipe information like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cb0fca6801931051237cdf0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baked Chicken Cutlets"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Chicken Breast"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Egg (1)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Bread Crumbs"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Grated Cheese"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Cut chicken breast into thin cutlets"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Sramble egg in bowl"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Dip cutlets in bowl"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Coat egg-dipped cutlets in bread crumbs"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Bake in oven at 350 for 20 mins, flipping halfway through"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Top with grated cheese &amp; serve with side of choice"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Vegetable Pasta"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Broccoli"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Asparagus"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Zucchini"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Spinach"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinner"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chicken"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new recipe, adding it to the database.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST https://damico-recipes-api.herokuapp.com/api/recipes</code></p>
+<h3 id='required-fields'>Required Fields</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>recipe name</td>
+</tr>
+<tr>
+<td>ingredients</td>
+<td>recipe ingredients</td>
+</tr>
+<tr>
+<td>instructions</td>
+<td>recipe instructions</td>
+</tr>
+<tr>
+<td>sides</td>
+<td>recipe sides</td>
+</tr>
+<tr>
+<td>meal</td>
+<td>recipe meal</td>
+</tr>
+<tr>
+<td>type</td>
+<td>recipe type</td>
+</tr>
+</tbody></table>
+<h2 id='edit-a-recipe'>Edit a Recipe</h2>
+<blockquote>
+<p>To edit a recipe, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X PUT
+  https://damico-recipes-api.herokuapp.com/api/recipes/&lt;id&gt;
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -d <span class="s1">'{
+    "_id": "5cb0fca6801931051237cdf0",
+    "name": "Fried Chicken Cutlets",
+    "ingredients": [
+        "Chicken Breast",
+        "Egg (1)",
+        "Bread Crumbs",
+        "Grated Cheese"
+    ],
+    "instructions": [
+        "Cut chicken breast into thin cutlets",
+        "Sramble egg in bowl",
+        "Dip cutlets in bowl",
+        "Coat egg-dipped cutlets in bread crumbs",
+        "Cook in oil over medium flame",
+        "Top with grated cheese &amp; serve with side of choice"
+    ],
+    "sides": [
+        "Vegetable Pasta",
+        "Broccoli",
+        "Asparagus",
+        "Zucchini",
+        "Spinach"
+    ],
+    "meal": "dinner",
+    "type": "chicken"
+}'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns a 200 status code and a JSON object containing the updated data like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cb0fca6801931051237cdf0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fried Chicken Cutlets"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ingredients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Chicken Breast"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Egg (1)"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Bread Crumbs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Grated Cheese"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"instructions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Cut chicken breast into thin cutlets"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Sramble egg in bowl"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Dip cutlets in bowl"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Coat egg-dipped cutlets in bread crumbs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Cook in oil over medium flame"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Top with grated cheese &amp; serve with side of choice"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"sides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Vegetable Pasta"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Broccoli"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Asparagus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Zucchini"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Spinach"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinner"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chicken"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint edits an exisintg recipe in the database.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT https://damico-recipes-api.herokuapp.com/api/recipes/&lt;id&gt;</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>id of the recipe to edit</td>
+</tr>
+</tbody></table>
+<h3 id='required-fields-2'>Required Fields</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_id</td>
+<td>id of the recipe to edit</td>
+</tr>
+</tbody></table>
+<h3 id='optional-fields'>Optional Fields</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>recipe name</td>
+</tr>
+<tr>
+<td>ingredients</td>
+<td>recipe ingredients</td>
+</tr>
+<tr>
+<td>instructions</td>
+<td>recipe instructions</td>
+</tr>
+<tr>
+<td>sides</td>
+<td>recipe sides</td>
+</tr>
+<tr>
+<td>meal</td>
+<td>recipe meal</td>
+</tr>
+<tr>
+<td>type</td>
+<td>recipe type</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-recipe'>Delete a Recipe</h2>
+<blockquote>
+<p>To delete a recipe, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE
+  https://damico-recipes-api.herokuapp.com/api/recipes/&lt;id&gt;
+</code></pre>
+<blockquote>
+<p>The above command returns a 204 status code.</p>
+</blockquote>
+
+<p>This endpoint deletes an existing recipe from the database.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>DELETE https://damico-recipes-api.herokuapp.com/api/recipes/&lt;id&gt;</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>id of the recipe to delete</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<p>The D&#39;Amico Recipes API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified request could not be found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
